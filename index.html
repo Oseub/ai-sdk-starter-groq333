@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Interface</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        /* Custom styles can go here */
+    </style>
+</head>
+<body class="bg-gray-100 p-5">
+    <div class="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
+        <div class="md:flex">
+            <div class="p-8">
+                <h1 class="block mt-1 text-lg leading-tight font-medium text-black">Chat Interface</h1>
+                <div id="messages" class="overflow-auto h-96 border-2 border-gray-300 rounded-lg p-2 mb-4"></div>
+                <div class="flex">
+                    <input id="messageInput" type="text" class="flex-grow border-2 border-gray-300 p-2 rounded-l-lg" placeholder="Type your message..." />
+                    <button id="sendButton" class="bg-blue-500 text-white font-bold py-2 px-4 rounded-r-lg">Send</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const sendButton = document.getElementById('sendButton');
+        const messageInput = document.getElementById('messageInput');
+        const messages = document.getElementById('messages');
+
+        sendButton.addEventListener('click', () => {
+            const messageText = messageInput.value;
+            if (messageText) {
+                const messageElement = document.createElement('div');
+                messageElement.classList.add('mb-2', 'p-2', 'bg-blue-100', 'rounded-lg');
+                messageElement.textContent = messageText;
+                messages.appendChild(messageElement);
+                messageInput.value = '';
+                messages.scrollTop = messages.scrollHeight; // Scroll to bottom
+            }
+        });
+    </script>
+</body>
+</html>
